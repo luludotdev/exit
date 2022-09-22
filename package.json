@@ -2,31 +2,35 @@
   "name": "@lolpants/exit",
   "version": "0.2.0",
   "packageManager": "yarn@3.2.3",
+  "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
   },
-  "sideEffects": false,
+  "sideEffects": true,
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "yarn run lint",
     "build": "tsup",
-    "lint": "prettier --check . && eslint src --ext mjs,js,ts",
-    "format": "prettier --write . && eslint src --ext mjs,js,ts --fix",
+    "check": "tsc --noEmit --skipLibCheck",
+    "lint": "prettier --check . && eslint src --ext ts",
+    "format": "prettier --write . && eslint src --ext ts --fix",
     "fmt": "yarn run format",
+    "test": "yarn run check && yarn run lint",
     "prepack": "yarn run test && yarn run build"
   },
-  "repository": "git@github.com:lolPants/exit.git",
-  "author": "Jack Baron <jackmbaron@gmail.com>",
+  "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lolPants/exit.git"
+  },
   "engines": {
     "node": ">=16.9.0"
   },
